@@ -26,7 +26,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: veritas_backend_pocketbase
+        file: backend/veritas_backend_pocketbase
         asset_name: veritas_backend_pocketbase
         tag: ${{ github.ref }}
         overwrite: true

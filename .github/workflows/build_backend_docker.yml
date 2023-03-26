@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - uses: actions/checkout@v2
+         with:
+           ref: main
+           path: './backend'
 
        - name: Build and Publish head Docker image
-         working-directory: ./backend 
          uses: VaultVulp/gp-docker-action@1.2.0
          with:
            github-token: ${{ secrets.GITHUB_TOKEN }} 

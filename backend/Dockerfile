@@ -3,9 +3,7 @@ FROM docker.io/golang AS build
 WORKDIR /app
 COPY main.go /app
 
-#RUN go mod init main && go mod tidy
-ADD go.mod go.sum /app/
-RUN go mod download
+RUN go mod init main && go mod tidy
 RUN CGO_ENABLED=0 go build -o pocketbase
 
 

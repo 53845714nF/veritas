@@ -1,0 +1,15 @@
+name: Shellcheck on Scripts
+
+on:
+  push:
+    paths:
+      - 'backend/*'
+  workflow_dispatch:
+
+jobs:
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: shellcheck backend/scripts/*.sh

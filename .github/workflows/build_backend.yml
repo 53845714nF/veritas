@@ -1,0 +1,33 @@
+name: Go
+on:
+  workflow_run:
+    workflows: ["Shellcheck on Scripts"]
+    branches: [main]
+    types: 
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+
+    - name: Build
+      run: |
+        cd backend
+        go mod init main && go mod tidy
+        CGO_ENABLED=0 go build -o veritas_backend_pocketbase
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: veritas_backend_pocketbase
+        asset_name: veritas_backend_pocketbase
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "The Go Binary of the backend from veritas"

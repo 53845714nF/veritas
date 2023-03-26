@@ -11,7 +11,7 @@
 # $9 days
 
 
-mkdir -p /var/pb_data/storage/certificationauthority/$1/
+mkdir -p "/var/pb_data/storage/certificationauthority/$1/"
 
 openssl genrsa -out "/var/pb_data/storage/certificationauthority/$1/$1.key" 2048
 openssl req -x509 -new -nodes -key "/var/pb_data/storage/certificationauthority/$1/$1.key" \

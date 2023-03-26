@@ -1,0 +1,21 @@
+name: Build backend container
+on:
+  push:
+    paths:
+      - 'backend/*'
+
+
+jobs:
+  build:
+    name: Build image
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+
+       - name: Build and Publish head Docker image
+         uses: VaultVulp/gp-docker-action@1.2.0
+         with:
+           github-token: ${{ secrets.GITHUB_TOKEN }} 
+           image-name: veritas_backend_pocketbase
+           dockerfile: backend/Dockerfile
+           image-tag: latest 

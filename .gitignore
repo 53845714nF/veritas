@@ -1,0 +1,13 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+/backend/pb_data/*
+/backend/pocketbase
+
+/backend/go.sum
+/backend/go.mod
+
+

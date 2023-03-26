@@ -1,9 +1,10 @@
 name: Build backend container
 on:
-  push:
-    paths:
-      - 'backend/*'
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Shellcheck on Scripts"]
+    branches: [main]
+    types: 
+      - completed
 
 jobs:
   build:
@@ -18,5 +19,4 @@ jobs:
            github-token: ${{ secrets.GITHUB_TOKEN }} 
            image-name: veritas_backend_pocketbase
            build-context: ./backend
-           image-tag: latest 
-
+           image-tag: latest

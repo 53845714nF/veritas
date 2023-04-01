@@ -1,0 +1,32 @@
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+}
+
+.header-wrapper {
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+.table-cert-wrapper {
+    padding-right: 40%;
+    padding-left: 15%;
+}
+
+.table-ca-wrapper {
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+.tab {
+    padding-right: 15%;
+    padding-left: 15%;
+
+}
+
+.active {
+    text-decoration: underline solid hsl(195deg, 85%, 41%);
+    text-decoration-thickness: 0.1em;
+}

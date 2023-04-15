@@ -25,10 +25,10 @@ func main() {
 			Name:       "certification_authority",
 			Type:       models.CollectionTypeBase,
 			ListRule:   types.Pointer("@request.auth.id != ''"),
-			ViewRule:   nil,
+			ViewRule:   types.Pointer("@request.auth.id != ''"),
 			CreateRule: nil,
 			UpdateRule: nil,
-			DeleteRule: nil,
+			DeleteRule: types.Pointer("@request.auth.id != ''"),
 			Schema: schema.NewSchema(
 				&schema.SchemaField{
 					Name:     "email",
@@ -86,10 +86,10 @@ func main() {
 			Name:       "cert",
 			Type:       models.CollectionTypeBase,
 			ListRule:   types.Pointer("@request.auth.id != ''"),
-			ViewRule:   nil,
+			ViewRule:   types.Pointer("@request.auth.id != ''"),
 			CreateRule: nil,
 			UpdateRule: nil,
-			DeleteRule: nil,
+			DeleteRule: types.Pointer("@request.auth.id != ''"),
 			Schema: schema.NewSchema(
 				&schema.SchemaField{
 					Name:     "ca",

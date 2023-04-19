@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
+import {ReactElement, useEffect, useState} from "react";
 import pb from "../lib/pocketbase";
-import {ListResult} from "pocketbase";
-import Ca from "../model/ca";
+import {ListResult, Record} from "pocketbase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faFileShield, faTrash} from "@fortawesome/free-solid-svg-icons";
 
-export default function CertTable(): JSX.Element {
-    const [data, setData] = useState<ListResult<Ca> | null>(null);
+
+export default function CertTable(): ReactElement  {
+    const [data, setData] = useState<ListResult<Record> | null>(null);
 
     useEffect(() => {
         async function fetchData() {
-            const result: ListResult<Ca> = await pb.collection('certification_authority').getList<Ca>(1, 50);
+            const result: ListResult<Record> = await pb.collection('certification_authority').getList<Record>(1, 50);
             setData(result);
         }
 
@@ -40,10 +40,14 @@ export default function CertTable(): JSX.Element {
                 </thead>
                 <tbody>
                 {
-                    data.items.map((item: Ca) => (
+                    data.items.map((item: Record) => (
                         <tr>
                             <td>{item.id}</td>
-                            <td>{item.caFile}</td>
+                            <td>&ensp;
+                                <a href={pb.getFileUrl(item, item.caFile, {})}>
+                                    <FontAwesomeIcon icon={faFileShield}/>
+                                </a>
+                            </td>
                             <td>{item.email}</td>
                             <td>{item.country}</td>
                             <td>{item.state}</td>
@@ -55,7 +59,8 @@ export default function CertTable(): JSX.Element {
                                 <FontAwesomeIcon
                                     id={item.id}
                                     icon={faTrash}
-                                    onClick={() => pb.collection('certification_authority').delete(item.id)}/>
+                                    onClick={() => pb.collection('certification_authority').delete(item.id)}
+                                />
                             </td>
                         </tr>
                     ))

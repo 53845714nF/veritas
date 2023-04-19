@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, ReactElement} from "react";
 import Tab from "../model/tab";
 
-
-interface Props {
+interface TabsProps {
     tabs: Tab[];
 }
 
-export default function Tabs({tabs}: Props) {
+export default function Tabs({tabs}: TabsProps): ReactElement {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
 
     const handleTabClick = (index: number) => {
@@ -29,5 +28,5 @@ export default function Tabs({tabs}: Props) {
             </div>
             {tabs[activeTabIndex].content}
         </>
-    );
+    )
 }

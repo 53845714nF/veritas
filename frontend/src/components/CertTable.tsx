@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {ReactElement, useEffect, useState} from "react";
 import pb from "../lib/pocketbase";
 import {ListResult, Record} from "pocketbase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileCode, faFileShield, faKey, faTrash} from "@fortawesome/free-solid-svg-icons";
 
-
-export default function CertTable(): JSX.Element {
+export default function CertTable(): ReactElement {
     const [data, setData] = useState<ListResult<Record> | null>(null);
 
 
     useEffect(() => {
         async function fetchData() {
             const result: ListResult<Record> = await pb.collection('cert').getList<Record>(1, 50);
-
             setData(result);
         }
 
@@ -39,7 +37,7 @@ export default function CertTable(): JSX.Element {
                 <tbody>
                 {
                     data.items.map((item: Record) => (
-                        <tr>
+                        <tr key={item.id}>
                             <td>{item.id}</td>
                             <td>{item.ca}</td>
                             <td>&ensp;
@@ -61,7 +59,8 @@ export default function CertTable(): JSX.Element {
                                 <FontAwesomeIcon
                                     id={item.id}
                                     icon={faTrash}
-                                    onClick={() => pb.collection('cert').delete(item.id)}/>
+                                    onClick={() => pb.collection('cert').delete(item.id)}
+                                />
                             </td>
                         </tr>
                     ))

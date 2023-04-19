@@ -1,7 +1,8 @@
 import {useForm} from "react-hook-form";
 import useLogin, {LoginData} from "../hooks/useLogin";
+import { ReactElement } from "react";
 
-export default function Login() {
+export default function Login(): ReactElement {
     const {login, isLoading} = useLogin();
     const {register, handleSubmit, reset} = useForm<LoginData>();
 

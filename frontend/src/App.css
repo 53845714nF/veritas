@@ -1,3 +1,11 @@
+[data-theme="dark"] {
+    --primary: #00897b;
+    --primary-hover: #009688;
+    --primary-focus: rgba(0, 137, 123, 0.25);
+    --primary-inverse: #FFF;
+  }
+  
+
 .login-wrapper {
     display: flex;
     flex-direction: column;
@@ -29,4 +37,26 @@
 .active {
     text-decoration: underline solid hsl(195deg, 85%, 41%);
     text-decoration-thickness: 0.1em;
+}
+
+.overlay{
+    position: absolute;
+    display: block;
+    width: 60%;
+    height: 90%;
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-right: 15%;
+    margin-left: 15%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+    border-radius: 3%;
+}
+
+.overlay-inside{
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 5%;
 }

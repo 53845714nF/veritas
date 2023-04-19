@@ -6,8 +6,9 @@ import CertTable from "./CertTable";
 import Tabs from "./Tab";
 import Tab from "../model/tab";
 import CaTable from "./CaTable";
+import { ReactElement } from "react";
 
-export default function Home() {
+export default function Home(): ReactElement {
     const navigate = useNavigate()
 
     useEffect(() => {

@@ -1,3 +1,4 @@
+
 {
   "compilerOptions": {
     "target": "es5",
@@ -21,7 +22,7 @@
     "jsx": "react-jsx"
   },
   "compilerOptions": {
-    "baseURl": "src"
+    "baseURL": "src"
   },
   "include": [
     "src"

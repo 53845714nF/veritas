@@ -64,6 +64,11 @@ func main() {
 					Required: true,
 				},
 				&schema.SchemaField{
+					Name:     "cname",
+					Type:     schema.FieldTypeText,
+					Required: true,
+				},
+				&schema.SchemaField{
 					Name:     "days",
 					Type:     schema.FieldTypeNumber,
 					Required: true,

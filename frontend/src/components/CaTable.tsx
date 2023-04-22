@@ -10,7 +10,7 @@ export default function CertTable(): ReactElement  {
 
     useEffect(() => {
         async function fetchData() {
-            const result: ListResult<Record> = await pb.collection('certification_authority').getList<Record>(1, 50);
+            const result: ListResult<Record> = await pb.collection('certification_authority').getList<Record>(1, 50, { '$autoCancel': false });
             setData(result);
         }
 
@@ -25,16 +25,17 @@ export default function CertTable(): ReactElement  {
         <div className="table-ca-wrapper">
             <table role="grid">
                 <thead>
-                <tr>
+                <tr key="table-header">
                     <th scope="col">Name</th>
                     <th scope="col">CA File</th>
+                    <th scope="col">Cname</th>
+                    <th scope="col">Days</th>
                     <th scope="col">E-Mail</th>
                     <th scope="col">Country</th>
                     <th scope="col">State</th>
                     <th scope="col">Locality</th>
                     <th scope="col">Organisation Name</th>
                     <th scope="col">Unit</th>
-                    <th scope="col">Days</th>
                     <th scope="col">Delete</th>
                 </tr>
                 </thead>
@@ -48,13 +49,14 @@ export default function CertTable(): ReactElement  {
                                     <FontAwesomeIcon icon={faFileShield}/>
                                 </a>
                             </td>
+                            <td>{item.cname}</td>
+                            <td>{item.days}</td>
                             <td>{item.email}</td>
                             <td>{item.country}</td>
                             <td>{item.state}</td>
                             <td>{item.locality}</td>
                             <td>{item.orgName}</td>
                             <td>{item.orgUnit}</td>
-                            <td>{item.days}</td>
                             <td>
                                 <FontAwesomeIcon
                                     id={item.id}

@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "target": "es5",
@@ -19,10 +18,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "compilerOptions": {
-    "baseURL": "src"
+    "jsx": "react-jsx",
+    "baseUrl": "src"
   },
   "include": [
     "src"

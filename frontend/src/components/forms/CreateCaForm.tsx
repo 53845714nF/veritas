@@ -4,12 +4,23 @@ import UserForm from "./UserForm";
 import LocationForm from "./LocationForm";
 import OrganisationForm from "./OrganisationForm";
 import PropertiesForm from "./PropertiesForm";
-import useCreateCa, {CaFormData} from "../../hooks/useCreateCa";
+
+type CaFormData = {
+  name: string,
+  email: string,
+  country: string,
+  state: string,
+  locality: string,
+  orgName: string,
+  orgUnit: string,
+  cname: string,
+  days: string,
+}
 
 const INITIAL_DATA: CaFormData = {
   name: "",
   email: "",
-  country: "",
+  country: "DE",
   state: "",
   locality: "",
   orgName: "",
@@ -23,10 +34,42 @@ interface CreateCaFormProps {
   closeForm: () => void;
 }
 
+async function createCA(data: CaFormData) {
+
+  const url = 'http://0.0.0.0:8090/api/veritas/createca';
+  const params = new URLSearchParams({
+    name: data.name,
+    email: data.email,
+    country: data.country,
+    state: data.state,
+    locality: data.locality,
+    org_name: data.orgName,
+    org_unit: data.orgUnit,
+    cname: data.cname,
+    days: data.days
+  })
+  
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: params
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.text();
+    console.log(data);
+  } catch (e) {
+    alert(e);
+  }
+
+}
+
 export default function CreateCaForm(props: CreateCaFormProps): ReactElement{
   const {isOpen, closeForm} = props;
   const [data, setData] = useState(INITIAL_DATA)
-  const createCA = useCreateCa();
 
   function updateFields(fields: Partial<CaFormData>): void{
     setData(prev => {

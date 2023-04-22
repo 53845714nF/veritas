@@ -1,3 +1,5 @@
+import { ReactElement } from "react"
+
 type OrganisationData = {
     orgName: string
     orgUnit: string
@@ -8,7 +10,7 @@ type OrganisationFormProps = OrganisationData & {
   updateFields: (fields: Partial<OrganisationData>) => void
 }
 
-export default function OrganisationForm({orgName, orgUnit,  updateFields}: OrganisationFormProps) {
+export default function OrganisationForm({orgName, orgUnit,  updateFields}: OrganisationFormProps): ReactElement {
     return (
       <>
         <h2 style={{textAlign: "center"}}>Organisation</h2>

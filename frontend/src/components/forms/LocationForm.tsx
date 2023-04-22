@@ -1,3 +1,5 @@
+import { ReactElement } from "react"
+
 type LocationData = {
     country: string
     state: string
@@ -8,7 +10,7 @@ type LocationFormProps = LocationData & {
   updateFields: (fields: Partial<LocationData>) => void
 }
 
-export default function LocationForm({country, state, locality, updateFields}: LocationFormProps) {
+export default function LocationForm({country, state, locality, updateFields}: LocationFormProps): ReactElement {
   return (
     <>
       <h2 style={{textAlign: "center"}}>Location</h2>

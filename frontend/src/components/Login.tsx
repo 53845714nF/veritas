@@ -1,14 +1,21 @@
-import {useForm} from "react-hook-form";
-import useLogin, {LoginData} from "../hooks/useLogin";
+import { useForm } from "react-hook-form";
+import useLogin, { LoginData } from "../hooks/useLogin";
 import { ReactElement } from "react";
+import pb from "lib/pocketbase";
+import {useNavigate} from "react-router-dom";
 
 export default function Login(): ReactElement {
     const {login, isLoading} = useLogin();
     const {register, handleSubmit, reset} = useForm<LoginData>();
+    const navigate = useNavigate();
 
     async function onsubmit(data: LoginData) {
         await login(data)
         reset();
+    }
+
+    if (pb.authStore.isValid){
+        navigate("/home")
     }
 
     return (

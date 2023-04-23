@@ -1,6 +1,5 @@
 import pb from "../lib/pocketbase";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 export type LoginData = {
     email: string;
@@ -9,18 +8,15 @@ export type LoginData = {
 
 export default function useLogin() {
     const [isLoading, setLoading] = useState<boolean>(false);
-    const navigate = useNavigate()
-
+    
     async function login(data: LoginData) {
         setLoading(true);
         try {
-            await pb.collection("users").authWithPassword(data.email, data.password)
-            navigate("/home")
+            await pb.collection("users").authWithPassword(data.email, data.password)     
         } catch (e) {
             alert(e)
         }
         setLoading(false);
-
     }
 
     return {login, isLoading}

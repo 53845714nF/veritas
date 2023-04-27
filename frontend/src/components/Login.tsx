@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import useLogin, { LoginData } from "../hooks/useLogin";
 import { ReactElement } from "react";
-import pb from "lib/pocketbase";
+import { pb } from "../lib/pocketbase";
 import {useNavigate} from "react-router-dom";
 
 export default function Login(): ReactElement {
@@ -33,7 +33,8 @@ export default function Login(): ReactElement {
                 </label>
 
                 <button type="submit" disabled={isLoading}>Login</button>
-                {isLoading && <progress></progress>}
+                <div role="progress">test</div>
+                {isLoading && <progress role="progress"></progress>}
             </form>
         </div>
     );

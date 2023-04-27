@@ -1,5 +1,5 @@
 import React, {ReactElement, useEffect, useState} from "react";
-import pb from "../lib/pocketbase";
+import { pb } from "../lib/pocketbase";
 import {ListResult, Record} from "pocketbase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileCode, faFileShield, faKey, faTrash} from "@fortawesome/free-solid-svg-icons";

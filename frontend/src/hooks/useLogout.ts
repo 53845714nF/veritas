@@ -1,4 +1,4 @@
-import pb from "../lib/pocketbase";
+import { pb } from "../lib/pocketbase";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 

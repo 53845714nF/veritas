@@ -1,5 +1,5 @@
 import { FormEvent, ReactElement, useEffect, useState } from "react";
-import pb from "lib/pocketbase";
+import { pb } from "../../lib/pocketbase";
 import { ListResult, Record } from "pocketbase";
 
 type CertFormData = {

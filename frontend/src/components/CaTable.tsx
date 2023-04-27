@@ -1,5 +1,5 @@
 import {ReactElement, useEffect, useState} from "react";
-import pb from "../lib/pocketbase";
+import { pb } from "../lib/pocketbase";
 import {ListResult, Record} from "pocketbase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileShield, faTrash} from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +18,7 @@ export default function CertTable(): ReactElement  {
     }, []);
 
     if (!data) {
-        return <progress></progress>
+        return <progress role="progress"></progress>
     }
 
     return (

@@ -1,6 +1,7 @@
-import { FormEvent, ReactElement, useEffect, useState } from "react";
+import React, { FormEvent, ReactElement, useEffect, useState } from "react";
 import { pb } from "../../lib/pocketbase";
 import { ListResult, Record } from "pocketbase";
+
 
 type CertFormData = {
     ca: string,
@@ -51,7 +52,7 @@ export default function CreateCertForm(props: CreateCertFormProps): ReactElement
         async function fetchData() {
             const result: ListResult<Record> = await pb.collection('certification_authority').getList<Record>(1, 50, { '$autoCancel': false });
             setPbListCa(result);
-            setData({ca: result.items[0].id, url: ""})
+            setData({ca: result.items[0].id, url: ""} as CertFormData)
         }
 
         fetchData();

@@ -36,9 +36,8 @@ export default function CertTable(): ReactElement {
                 </tr>
                 </thead>
                 <tbody>
-                {
-                    data.items.map((item: Record) => (
-                        <tr key={item.id}>
+                { data.items.map((item: Record, index: number) => (
+                        <tr key={index}>
                             <td>{item.id}</td>
                             <td>{item.ca}</td>
                             <td>&ensp;

@@ -3,12 +3,12 @@ import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import Login from "./Login";
 
-
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
    ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
+
 
 beforeEach(() => {
   render(<Login />);
@@ -25,12 +25,19 @@ test("Renders Login Screen", () => {
     expect(LoginButton).toBeInTheDocument();
 });
 
-test("Renders Progress Bar on Login Screen", () => {
-  const ProgressElement = screen.getByRole("progress");  
-  expect(ProgressElement).toBeInTheDocument();
-})
+
 
 test("Login Button disabled when Loading", () => {
   const isLoginButtonDisabled = (screen.getByText(/Login/i)as HTMLButtonElement).disabled;
   expect(isLoginButtonDisabled).toBe(false);
 })
+
+test("Renders Progress Bar when Loading", () => {
+  const useStateSpy = jest.spyOn(React, 'useState')
+  useStateSpy.mockImplementation(() => [true, jest.fn()])
+  render(<Login />)
+  
+  const ProgressElement = screen.getByRole("progressbar");  
+  expect(ProgressElement).toBeInTheDocument();
+})
+

@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import useLogout from "../hooks/useLogout";
 import CreateCaForm from "./forms/CreateCaForm";
 import CreateCertForm from "./forms/CreateCertForm";
@@ -9,6 +9,14 @@ export default function Header(): ReactElement {
     const [isOpenCaForm, setCaForm] = useState(false);
     const [isOpenCertForm, setCertForm] = useState(false);
     
+    function openCertForm(): void{
+        setCertForm(true)
+    }
+
+    function closeCertForm(): void{
+        setCertForm(false)
+    }
+
     function openCaForm(): void{
         setCaForm(true)
     }
@@ -17,14 +25,6 @@ export default function Header(): ReactElement {
         setCaForm(false)
     }
 
-    function openCertForm(): void{
-        setCertForm(true)
-    }
-
-    function closeCertForm(): void{
-        setCertForm(false)
-    }
-    
     return (
         <div className="header-wrapper">
             <nav>

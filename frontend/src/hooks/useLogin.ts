@@ -1,5 +1,5 @@
 import { pb } from "../lib/pocketbase";
-import {useState} from "react";
+import { useState } from "react";
 
 export type LoginData = {
     email: string;

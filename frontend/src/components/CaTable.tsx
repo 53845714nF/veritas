@@ -1,4 +1,4 @@
-import {ReactElement, useEffect, useState} from "react";
+import React, {ReactElement, useEffect, useState} from "react";
 import { pb } from "../lib/pocketbase";
 import {ListResult, Record} from "pocketbase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -18,31 +18,30 @@ export default function CertTable(): ReactElement  {
     }, []);
 
     if (!data) {
-        return <progress role="progress"></progress>
+        return <progress></progress>
     }
 
     return (
         <div className="table-ca-wrapper">
             <table role="grid">
-                <thead>
-                <tr key="table-header">
-                    <th scope="col">Name</th>
-                    <th scope="col">CA File</th>
-                    <th scope="col">Cname</th>
-                    <th scope="col">Days</th>
-                    <th scope="col">E-Mail</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Locality</th>
-                    <th scope="col">Organisation Name</th>
-                    <th scope="col">Unit</th>
-                    <th scope="col">Delete</th>
-                </tr>
+                <thead role="table">
+                    <tr key="table-header">
+                        <th scope="col">Name</th>
+                        <th scope="col">CA File</th>
+                        <th scope="col">Cname</th>
+                        <th scope="col">Days</th>
+                        <th scope="col">E-Mail</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Locality</th>
+                        <th scope="col">Organisation Name</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {
-                    data.items.map((item: Record) => (
-                        <tr>
+                { data.items.map((item: Record, index: number) => (
+                        <tr key={index}>
                             <td>{item.id}</td>
                             <td>&ensp;
                                 <a href={pb.getFileUrl(item, item.caFile, {})}>

@@ -4,13 +4,13 @@ import {ListResult, Record} from "pocketbase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFileShield, faTrash} from "@fortawesome/free-solid-svg-icons";
 
-
 export default function CertTable(): ReactElement  {
     const [data, setData] = useState<ListResult<Record> | null>(null);
 
     useEffect(() => {
         async function fetchData() {
             const result: ListResult<Record> = await pb.collection('certification_authority').getList<Record>(1, 50, { '$autoCancel': false });
+            
             setData(result);
         }
 
@@ -18,8 +18,10 @@ export default function CertTable(): ReactElement  {
     }, []);
 
     if (!data) {
-        return <progress></progress>
-    }
+        return (
+            <progress></progress>
+        );
+    };
 
     return (
         <div className="table-ca-wrapper">

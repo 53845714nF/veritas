@@ -3,26 +3,25 @@ import useLogout from "../hooks/useLogout";
 import CreateCaForm from "./forms/CreateCaForm";
 import CreateCertForm from "./forms/CreateCertForm";
 
-
 export default function Header(): ReactElement {
     const logout = useLogout();
     const [isOpenCaForm, setCaForm] = useState(false);
     const [isOpenCertForm, setCertForm] = useState(false);
     
     function openCertForm(): void{
-        setCertForm(true)
+        setCertForm(true);
     }
 
     function closeCertForm(): void{
-        setCertForm(false)
+        setCertForm(false);
     }
 
     function openCaForm(): void{
-        setCaForm(true)
+        setCaForm(true);
     }
 
     function closeCaForm(): void{
-        setCaForm(false)
+        setCaForm(false);
     }
 
     return (

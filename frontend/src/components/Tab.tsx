@@ -28,5 +28,5 @@ export default function Tabs({tabs}: TabsProps): ReactElement {
             </div>
             {tabs[activeTabIndex].content}
         </>
-    )
+    );
 }

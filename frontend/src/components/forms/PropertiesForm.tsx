@@ -1,8 +1,8 @@
-import { ReactElement } from "react"
+import { ReactElement } from "react";
 
 type PropertiesData = {
-    cname: string
-    days: string
+    cname: string,
+    days: string,
 }
   
 type PropertiesFormProps = PropertiesData & {
@@ -31,7 +31,6 @@ export default function PropertiesForm({cname, days,  updateFields}: PropertiesF
       value={days}
       onChange={e => updateFields({ days: e.target.value })}
       />
-
-
   </>
-  )}
+  );
+}

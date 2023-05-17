@@ -1,6 +1,6 @@
 import React from 'react';
-import '@picocss/pico'
-import './App.css'
+import '@picocss/pico';
+import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";

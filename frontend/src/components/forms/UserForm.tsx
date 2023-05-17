@@ -1,4 +1,4 @@
-import { ReactElement } from "react"
+import { ReactElement } from "react";
 
 type UserData = {
   name: string
@@ -32,4 +32,6 @@ export default function UserForm({name, email, updateFields,}: UserFormProps): R
         />
     
     </> 
-  )}
+  );
+}
+

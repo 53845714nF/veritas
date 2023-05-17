@@ -9,13 +9,13 @@ import CaTable from "./CaTable";
 import { ReactElement } from "react";
 
 export default function Home(): ReactElement {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!pb.authStore.isValid) {
-            navigate("/login")
+            navigate("/login");
         }
-    })
+    });
 
     const tabs: Tab[] = [
         {

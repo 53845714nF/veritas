@@ -8,16 +8,23 @@ export type LoginData = {
 
 export default function useLogin() {
     const [isLoading, setLoading] = useState<boolean>(false);
-    
+    const [error, setError] = useState<string | null>(null);
+
     async function login(data: LoginData) {
         setLoading(true);
         try {
-            await pb.collection("users").authWithPassword(data.email, data.password)     
+            await pb.collection("users").authWithPassword(data.email, data.password);   
         } catch (e) {
-            alert(e)
+            let message = "Something went wrong";
+            
+            if (e instanceof Error){ 
+                message = e.message;
+            }
+            
+            setError(message);
         }
         setLoading(false);
     }
 
-    return {login, isLoading}
-}
+    return {login, isLoading, error};
+};

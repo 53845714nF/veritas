@@ -1,9 +1,9 @@
-import { ReactElement } from "react"
+import { ReactElement } from "react";
 
 type LocationData = {
-    country: string
-    state: string
-    locality: string
+    country: string;
+    state: string;
+    locality: string;
 }
   
 type LocationFormProps = LocationData & {
@@ -45,32 +45,5 @@ export default function LocationForm({country, state, locality, updateFields}: L
       onChange={e => updateFields({ locality: e.target.value })}
       />
     </>
-  )
+  );
 }
-
-    /*
-    interface Location {
-        state: string;
-        countryCode: string;
-      }
-      
-       async function getCityInfo(city: string): Promise<Location> {
-        const response = await axios.get(
-          `https://nominatim.openstreetmap.org/search.php?city=${city}&format=jsonv2&addressdetails=1&limit=1`
-        );
-        //const result = response.data.geonames[0];
-        //const result = response.0.address;
-        return {
-          state: "test",//result.state,
-          countryCode: "test", //result.countryCode,
-        };
-      }
-      
-      getCityInfo("München").then((result) => {
-        console.log(result.state);
-        console.log(result.countryCode);
-      });
-    */
-    // Country Code in ISO3166-1alpha2
-    // State Name 
-    // City Name 

@@ -10,6 +10,7 @@ export default function CertTable(): ReactElement {
     useEffect(() => {
         async function fetchData() {
             const result: ListResult<Record> = await pb.collection('cert').getList<Record>(1, 50, { '$autoCancel': false });
+            
             setData(result);
         }
 
@@ -19,7 +20,7 @@ export default function CertTable(): ReactElement {
     if (!data) {
         return (
             <progress></progress>
-        )
+        );
     }
 
     return (

@@ -27,7 +27,7 @@ const INITIAL_DATA: CaFormData = {
   orgUnit: "",
   cname: "",
   days: "",
-}
+};
 
 interface CreateCaFormProps {
   isOpen: boolean;
@@ -47,7 +47,7 @@ async function createCA(data: CaFormData) {
     org_unit: data.orgUnit,
     cname: data.cname,
     days: data.days
-  })
+  });
   
   const options = {
     method: 'POST',
@@ -58,9 +58,7 @@ async function createCA(data: CaFormData) {
   };
 
   try {
-    const response = await fetch(url, options);
-    const data = await response.text();
-    console.log(data);
+    await fetch(url, options);
   } catch (e) {
     alert(e);
   }
@@ -69,12 +67,12 @@ async function createCA(data: CaFormData) {
 
 export default function CreateCaForm(props: CreateCaFormProps): ReactElement{
   const {isOpen, closeForm} = props;
-  const [data, setData] = useState(INITIAL_DATA)
+  const [data, setData] = useState(INITIAL_DATA);
 
   function updateFields(fields: Partial<CaFormData>): void{
     setData(prev => {
-      return { ...prev, ...fields }
-    })
+      return { ...prev, ...fields };
+    });
   }
 
   const { currentStepIndex, step, steps, isFirstStep, isLastStep, back, next, goto } = useMultistepForm([
@@ -82,10 +80,10 @@ export default function CreateCaForm(props: CreateCaFormProps): ReactElement{
     <LocationForm {...data} updateFields={updateFields} />,
     <OrganisationForm {...data} updateFields={updateFields} /> ,
     <PropertiesForm {...data} updateFields={updateFields} /> ,
-  ])
+  ]);
 
   function onSubmit(e: FormEvent): void {
-    e.preventDefault()
+    e.preventDefault();
     
     if (isLastStep) {
       createCA(data);
@@ -93,7 +91,7 @@ export default function CreateCaForm(props: CreateCaFormProps): ReactElement{
       goto(0);
       closeForm();
     } else { 
-      next()
+      next();
     }
   }
 
@@ -119,4 +117,5 @@ export default function CreateCaForm(props: CreateCaFormProps): ReactElement{
           </div>
         )}
       </>
-  )}
+  );
+}

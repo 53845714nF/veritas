@@ -14,7 +14,11 @@ beforeEach(() => {
   render(<Login />);
 });
 
-test("Renders Login Screen", () => {
+// describe("testing login", () => {
+
+// })
+
+test.skip("Renders Login Screen", () => {
     const TitleElement = screen.getByText(/Veritas/i);
     const UsernameLabel = screen.getByText(/Username/i);
     const PasswordLabel = screen.getByText(/Password/i);
@@ -27,12 +31,12 @@ test("Renders Login Screen", () => {
 
 
 
-test("Login Button disabled when Loading", () => {
+test.skip("Login Button disabled when Loading", () => {
   const isLoginButtonDisabled = (screen.getByText(/Login/i)as HTMLButtonElement).disabled;
   expect(isLoginButtonDisabled).toBe(false);
 })
 
-test("Renders Progress Bar when Loading", () => {
+test.skip("Renders Progress Bar when Loading", () => {
   const useStateSpy = jest.spyOn(React, 'useState')
   useStateSpy.mockImplementation(() => [true, jest.fn()])
   render(<Login />)

@@ -2,7 +2,6 @@ import React, { FormEvent, ReactElement, useEffect, useState } from "react";
 import { pb } from "../../lib/pocketbase";
 import { ListResult, Record } from "pocketbase";
 
-
 type CertFormData = {
     ca: string,
     url: string,
@@ -11,8 +10,7 @@ type CertFormData = {
 const INITIAL_DATA: CertFormData = {
     ca: "",
     url: "",
-}
-
+};
 
 interface CreateCertFormProps {
     isOpen: boolean;
@@ -22,38 +20,37 @@ interface CreateCertFormProps {
 async function createCert(data: CertFormData) {
     const url = 'http://0.0.0.0:8090/api/veritas/createcert';
     const params = new URLSearchParams({
-      ca: data.ca,
-      url: data.url,
-    })
+        ca: data.ca,
+        url: data.url,
+    });
   
-      const options = {
+    const options = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: params
-      };
+    };
     
-      try {
-        const response = await fetch(url, options);
-        const data = await response.text();
-        console.log(data);
-      } catch (e) {
+    try {
+        await fetch(url, options);
+    } catch (e) {
         alert(e);
-      }
+    }
 }
 
 export default function CreateCertForm(props: CreateCertFormProps): ReactElement{
     const {isOpen, closeForm} = props;
     const [pbListCa, setPbListCa] = useState<ListResult<Record> | null>(null);
-    const [data, setData] = useState(INITIAL_DATA)
+    const [data, setData] = useState(INITIAL_DATA);
 
     useEffect(() => {
         async function fetchData() {
             const result: ListResult<Record> = await pb.collection('certification_authority').getList<Record>(1, 50, { '$autoCancel': false });
+            
             setPbListCa(result);
-            setData({ca: result.items[0].id, url: ""} as CertFormData)
-        }
+            setData({ca: result.items[0].id, url: ""} as CertFormData);
+        };
 
         fetchData();
     }, []);
@@ -70,8 +67,8 @@ export default function CreateCertForm(props: CreateCertFormProps): ReactElement
                     </div>
                 )}
             </>
-        )
-    }
+        );
+    };
 
     if (pbListCa.totalItems === 0) {
         return (
@@ -85,21 +82,21 @@ export default function CreateCertForm(props: CreateCertFormProps): ReactElement
                     </div>
                 )}
             </>
-        )
-    }
+        );
+    };
 
     function updateFields(fields: Partial<CertFormData>): void {
         setData(prev => {
-          return { ...prev, ...fields }
-        })
-    }
+          return { ...prev, ...fields };
+        });
+    };
 
     function onSubmit(e: FormEvent): void {
-        e.preventDefault()
+        e.preventDefault();
         createCert(data);
         setData(INITIAL_DATA);
         closeForm();
-    }
+    };
 
     return (
         <>
@@ -134,5 +131,5 @@ export default function CreateCertForm(props: CreateCertFormProps): ReactElement
                 </div>                
             )}
         </>
-    )
+    );
 }

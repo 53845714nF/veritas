@@ -1,9 +1,8 @@
-import { ReactElement } from "react"
+import { ReactElement } from "react";
 
 type OrganisationData = {
-    orgName: string
-    orgUnit: string
-
+    orgName: string;
+    orgUnit: string;
 }
   
 type OrganisationFormProps = OrganisationData & {
@@ -32,5 +31,5 @@ export default function OrganisationForm({orgName, orgUnit,  updateFields}: Orga
         onChange={e => updateFields({ orgUnit: e.target.value })}
         />
       </>
-    )
+    );
 }
